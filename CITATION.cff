@@ -10,3 +10,5 @@ authors:
     affiliation: "Departamento de Ingeniería Civil, Arquitectura y Geociencias, Universidad Técnica Particular de Loja; Especialización en Gestión de Geoinformación con mención en Proyectos de Ingeniería, Universidad Técnica Particular de Loja"
 license: MIT
 version: "1.0.0"
+doi: "10.5281/zenodo.23643029"
+repository-code: "https://github.com/vhgonzalez26-a11y/dispersed-buildings-loja3"

@@ -1,5 +1,7 @@
 # Data processing and model code: location of dispersed buildings in the Andean periphery of Loja Province, Ecuador
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23643029.svg)](https://doi.org/10.5281/zenodo.23643029)
+
 This repository contains the **data-processing and modelling code** and the **derived model outputs** of the study "Terrain, Roads and the Location of Dispersed Buildings in the Andean Periphery of Loja Province, Ecuador: A Spatially Cross-Validated Presence-Background Analysis".
 Study design, hypotheses, interpretation and the manuscript are in the article; they are not part of this repository.
 The unit of analysis is the building (census point), not the dwelling, and the model describes associations, not causal effects.
@@ -32,7 +34,7 @@ The unit of analysis is the building (census point), not the dwelling, and the m
 
 ## Licence and citation
 Code: MIT licence (`LICENSE`). Derived results (tables, metrics and figures in `outputs/`) and documentation: Creative Commons Attribution 4.0 (`LICENSE_RESULTS.md`). The licences do not cover third-party data, which keep the terms listed in `DATA_SOURCES.md`.
-Citation: see `CITATION.cff`. The archived version is on Zenodo; its DOI is given in the repository description.
+Citation: see `CITATION.cff`. The archived version (v1.0.0) is on Zenodo: https://doi.org/10.5281/zenodo.23643029.
 
 ## Authorship
 The software (data-processing workflow, model code and tests) was developed by Víctor González-Jaramillo (Departamento de Ingeniería Civil, Arquitectura y Geociencias, and Especialización en Gestión de Geoinformación con mención en Proyectos de Ingeniería, Universidad Técnica Particular de Loja, Loja 110101, Ecuador; vhgonzalez@utpl.edu.ec; https://orcid.org/0000-0002-2150-7690). The research reported in the article, and the contributions of all its authors, are described in the article.
