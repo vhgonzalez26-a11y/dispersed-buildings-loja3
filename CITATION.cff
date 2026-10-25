@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below and the associated article."
+title: "Data-processing code and derived model outputs for: Terrain, Roads and the Location of Dispersed Buildings in the Andean Periphery of Loja Province, Ecuador: A Spatially Cross-Validated Presence-Background Analysis"
+type: software
+authors:
+  - family-names: "González-Jaramillo"
+    given-names: "Víctor"
+    orcid: "https://orcid.org/0000-0002-2150-7690"
+    email: "vhgonzalez@utpl.edu.ec"
+    affiliation: "Departamento de Ingeniería Civil, Arquitectura y Geociencias, Universidad Técnica Particular de Loja; Especialización en Gestión de Geoinformación con mención en Proyectos de Ingeniería, Universidad Técnica Particular de Loja"
+license: MIT
+version: "1.0.0"

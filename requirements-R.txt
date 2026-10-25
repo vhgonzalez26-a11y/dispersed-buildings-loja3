@@ -1,0 +1,18 @@
+# R 4.4.3. Packages called with pkg:: in the scripts (see outputs/logs/session_info.txt for versions)
+dplyr
+ggplot2
+lidR
+openxlsx
+purrr
+readr
+rstudioapi
+sf
+splines
+stringi
+stringr
+svglite
+systemfonts
+terra
+tibble
+tidyr
+yaml

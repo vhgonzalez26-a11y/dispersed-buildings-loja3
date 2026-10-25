@@ -1,0 +1,9 @@
+# Python 3.12.3; versions installed on the working machine when this repository was exported (24 Oct 2026); the article states the same versions in Section 2.7
+geopandas==1.2.0
+shapely==2.2.0
+rasterio==1.5.2
+pyogrio==0.13.0
+scipy==1.18.1
+numpy==2.5.4
+pandas==3.0.6
+openpyxl==3.1.5
