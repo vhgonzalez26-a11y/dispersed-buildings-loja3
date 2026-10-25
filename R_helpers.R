@@ -117,7 +117,9 @@ read_xlsx_safe <- function(path, sheet) {
   if (!sheet %in% openxlsx::getSheetNames(path)) {
     stop("Hoja '", sheet, "' no encontrada en ", basename(path), call. = FALSE)
   }
-  out <- openxlsx::read.xlsx(path, sheet = sheet, detectDates = FALSE, check.names = FALSE)
+  # na.strings: openxlsx convierte por defecto la cadena "NA" en un valor perdido cuando el libro se guardó con Excel; en los libros de decisiones "NA" es un valor
+  # válido (p. ej. «no aplica» en el checklist), así que se desactiva esa conversión.
+  out <- openxlsx::read.xlsx(path, sheet = sheet, detectDates = FALSE, check.names = FALSE, na.strings = "<<sin_na>>")
   if (is.null(out)) return(tibble::tibble())
   tibble::as_tibble(out) |> dplyr::mutate(dplyr::across(dplyr::everything(), clean_chr))
 }

@@ -1,0 +1,4 @@
+role,output,n_features,n_outside_aoi,fields,file
+reference_training,training.gpkg,82970,7410,fcode; man; n_edif; loc; n_loc; cod_otros; nom_edif; otros; edif_censo; en_manzana; centro_aoi,data/raw/vector/censo_cartografia_aoi.gpkg
+auxiliary,(no merged: quality control only),1,1,nombre; csnap; categoria; area_ha_oficial; fuente,data/raw/vector/areas_protegidas_snap_podocarpus_oficial.gpkg
+auxiliary,(no merged: quality control only),14,9,OBJECTID; PARROQUIA; CATEGORIA; DESCRIPCI; Shape_Leng; Shape_Area,data/raw/vector/limite_urbano_2021.shp

@@ -1,0 +1,287 @@
+version: 1
+frozen_at: 2026-10-22 01:10:52
+hash: 556d244ac7ef3a30068570d09a9fbca0
+payload:
+  selected_question: Which terrain and road-accessibility factors are associated with
+    the location of dispersed buildings outside census blocks in the Andean periphery
+    of Loja and Catamayo, and how sensitive is that association to the road data source
+    and the spatial scale?
+  contribution_type: new_region_transferability
+  gap_statement: Building-level models of where dispersed rural housing is located
+    exist for scattered dwellings in Chile (Rojo-Mendoza et al., 2022) and for exurban
+    homes in the USA (Vukomanovic et al., 2019; Inglis et al., 2023), but the studies
+    we reviewed report no spatially independent validation, and none addresses an
+    Andean intermediate city. Rural-settlement studies in mountain areas, mostly from
+    China, work with villages, parcels or counties and rely on expert-weighted suitability
+    indices or on validation against the same settlements used to build the model.
+    Work on Loja, Malacatos and Vilcabamba is qualitative or cartographic (di Campli,
+    2019; Correa-Jaramillo et al., 2026; Segarra-Morales, 2026). Point-process models
+    and spatial block validation are established in ecology and land-use modelling
+    (Renner et al., 2015; Roberts et al., 2017; Sun and Robinson, 2018) but, to our
+    knowledge, have not been applied to housing in the Andes, and road layers of different
+    origin and endogeneity have not been compared as explanatory sources.
+  objectives: To quantify how terrain, road accessibility and distance to the urban
+    core explain the location of dispersed rural housing (buildings outside census
+    blocks) in the Andean periphery of Loja and Catamayo, and how much of it lies
+    beyond planning thresholds.
+  objectives_specific:
+  - Estimate standardised effects of slope, distance to roads (exogenous IGM 2013
+    roads versus endogenous tracks and OSM) and distance to the urban core with a
+    presence-background model and spatial block cross-validation.
+  - Compare the explanatory value of alternative road sources (IGM 2013 without tracks,
+    IGM with tracks, OSM 2019, census axes 2020) and document the endogeneity of collaborative
+    and track data.
+  - Quantify heterogeneity among the five centres and across distance rings from the
+    core.
+  - Describe, as sensitivity, the share of dispersed buildings within 25 and 30 m
+    of proxies of the state road network (Ley de Caminos regulation Art. 4) and outside
+    the official 2021 urban limit (Loja, Malacatos, Vilcabamba only).
+  - Test whether natural amenities (rivers) add explanatory power beyond slope and
+    roads.
+  hypotheses:
+  - id: H1
+    statement: Higher slope is associated with lower probability of a dispersed building
+      (standardised odds ratio below 1).
+    metric: intensity_ratio_slope
+    subset: igm_vias
+    operator: <
+    threshold: 1
+    compare_subset: ''
+    rationale: 'Exploratory run (21-oct-2026): intensity ratio per SD 0.44 (95% CI
+      0.36-0.53); terrain restricts rural settlement location (Mubareka et al. 2008
+      for elevation and valleys; Zhou et al. 2023). Hypothesis formulated after the
+      exploratory run.'
+  - id: H2
+    statement: Greater distance to roads (exogenous IGM 2013 roads without tracks)
+      is associated with lower probability (odds ratio below 1).
+    metric: intensity_ratio_dist_road_igm_vias
+    subset: igm_vias
+    operator: <
+    threshold: 1
+    compare_subset: ''
+    rationale: 'Exploratory run (21-oct-2026): intensity ratio per SD 0.52 (0.49-0.55);
+      accessibility drives settlement location (Yang et al. 2019). Habitat International
+      2026 reports a diminishing influence of road distance on land-cover change in
+      Ecuador, so the sign is not guaranteed. Formulated after the exploratory run.'
+  - id: H3
+    statement: Distance to the urban core has a weak independent effect once slope
+      and roads are controlled (odds ratio close to 1).
+    metric: intensity_ratio_dist_nucleo
+    subset: igm_vias
+    operator: '>='
+    threshold: 0.85
+    compare_subset: ''
+    rationale: 'Exploratory run (21-oct-2026): intensity ratio per SD 1.07 (0.92-1.22).
+      The threshold 0.85 is a judgement with no external source and was set after
+      the exploratory run; the result is reported with its interval.'
+  - id: H4
+    statement: The spline model with slope, IGM roads and distance to the urban core
+      discriminates dispersed-building locations with an AUC of at least 0.75 under
+      spatial block cross-validation after pairwise distance sampling (Hijmans 2012).
+    metric: cauc_pds_spatial_cv
+    subset: spl_igm_vias
+    operator: '>='
+    threshold: 0.75
+    compare_subset: ''
+    rationale: 'Exploratory run (21-oct-2026): spline model, cAUC after pairwise distance
+      sampling 0.81 (0.745-0.851); linear model 0.81. The 0.75 threshold is a judgement
+      set below the exploratory value, not a pre-registered number; the interval may
+      cross it and is reported as such.'
+  - id: H5
+    statement: A spline model with OSM 2019 roads discriminates better (AUC after
+      pairwise distance sampling) than the same model with IGM 2013 roads, which would
+      reflect the endogeneity of collaborative road data.
+    metric: cauc_pds_spatial_cv
+    subset: spl_osm2019
+    operator: '>'
+    threshold: ''
+    compare_subset: spl_igm_vias
+    rationale: 'Exploratory run (21-oct-2026): spline models 0.825 (OSM 2019) versus
+      0.811 (IGM 2013), with overlapping intervals. The hypothesis is kept to be reported
+      as supported or not. Formulated after the exploratory run.'
+  - id: H6
+    statement: 'Discrimination holds in every centre: AUC after pairwise distance
+      sampling of at least 0.65 when a centre is held out (spline model).'
+    metric: cauc_pds_spatial_cv
+    subset: spl_center_min
+    operator: '>='
+    threshold: 0.65
+    compare_subset: ''
+    rationale: 'Exploratory run (21-oct-2026): lowest held-out centre 0.709 (Catamayo;
+      no interval available). The 0.65 threshold is a judgement set below the exploratory
+      minimum, not a pre-registered number.'
+  - id: H7
+    statement: Distance to rivers (natural amenity) is associated with higher probability
+      beyond slope and roads (odds ratio below 1).
+    metric: intensity_ratio_dist_river
+    subset: full_igm_amenity
+    operator: <
+    threshold: 1
+    compare_subset: ''
+    rationale: 'Villarrica-Pucon (Chile) found amenities outweigh road accessibility
+      for rural residential plots. Exploratory run (21-oct-2026): intensity ratio
+      per SD for distance to rivers 1.10 (1.02-1.26), i.e. opposite to the hypothesised
+      direction; the hypothesis is kept as formulated and reported as not supported
+      if it holds.'
+  study_area:
+    name: Periphery of Loja, Catamayo, Malacatos, Vilcabamba and San Pedro de la Bendita
+      (Loja province, southern Ecuador)
+    description: 'Inter-Andean valleys at about 1,200-2,300 m a.s.l. with strong relief,
+      dry-subtropical to temperate climate, mixed agriculture and pasture. Five growth
+      centres: Loja (provincial capital) and Catamayo (employment poles) and three
+      satellites (Malacatos, Vilcabamba, San Pedro de la Bendita). Dispersed buildings
+      outside census blocks are 79% of buildings in Malacatos, 56% in Vilcabamba,
+      41% in San Pedro, 9% in Catamayo and 7% in Loja (census 2021). The 2022 census
+      records 40.5% seasonal or vacation dwellings in Malacatos and 24.4% in Vilcabamba.
+      Podocarpus National Park is excluded (official SNAP layer). AOI: ''amplio''
+      scenario built with 30 m raster rules (see ideas/A1_decisiones_y_amenazas.md).'
+  method_module: M03_presencia_fondo
+  method_params:
+    data:
+      census_gpkg: data/raw/vector/censo_cartografia_aoi.gpkg
+      presence_layer: edificios_2021_puntos
+      in_block_field: en_manzana
+      blocks_layer: manzanas_2021
+      census_axes_layer: ejes_2021
+      aoi_gpkg: data/raw/vector/aoi_estudio.gpkg
+      exclude_vector: data/raw/vector/areas_protegidas_snap_podocarpus_oficial.gpkg
+      slope_raster: data/raw/raster/slope_srtm30_x2.tif
+      slope_raster_divisor: 2
+      igm_gpkg: data/raw/vector/igm_50k_2013_base.gpkg
+      igm_roads_layers: via_l
+      igm_all_layers:
+      - via_l
+      - sendero_l
+      - rodera_l
+      river_layers: rio_l
+      core_layer: zona_urbana_a
+      core_names:
+      - LOJA
+      - CATAMAYO
+      - MALACATOS
+      - VILCABAMBA
+      - SAN PEDRO DE LA BENDITA
+      - SAN PEDRO DE VILCABAMBA
+      - TURUNUMA
+      - LAS PITAS
+      - SAN CAYETANO BAJO
+      - CRISTO REY
+      - AGUAS HEDIONDAS
+      osm_gpkg: data/raw/vector/osm_vias_snapshots.gpkg
+      osm_layer: osm_2019_01
+      urban_limit_vector: data/raw/vector/limite_urbano_2021.shp
+    domains:
+      main: extended
+      sensitivity:
+      - aoi_amplio
+      - aoi_estricto
+      - aoi_base
+      - core_buffer
+      extended_buffer_m: 5000
+      core_buffer_m: 10000
+    background:
+      ratio_main: 20
+      ladder:
+      - 1
+      - 3
+      - 10
+      - 20
+      - 40
+      seeds:
+      - 2026
+      - 7
+      - 11
+      naive_logit_ratio: 3
+    cv:
+      folds: 5
+      repeats: 3
+      block_size_m: auto
+      block_auto_bounds_m:
+      - 2000
+      - 16000
+      block_sizes_sensitivity:
+      - 2000
+      - 4000
+      - 8000
+      - 16000
+      correlogram_bands: 20
+    bootstrap:
+      B: 300
+      sets:
+      - igm_vias
+      - igm_all
+      - osm2019
+      - census2020
+      - full_igm_amenity
+    nonlinear_df: 3
+    nonlinear_df_sensitivity:
+    - 2
+    - 5
+    min_presences_subset: 200
+    rings_km:
+    - 0
+    - 2
+    - 5
+    - 10
+    feature_sets:
+      igm_vias:
+      - slope
+      - log_d_igm_vias
+      - log_d_nucleo
+      igm_all:
+      - slope
+      - log_d_igm_all
+      - log_d_nucleo
+      osm2019:
+      - slope
+      - log_d_osm2019
+      - log_d_nucleo
+      census2020:
+      - slope
+      - log_d_census2020
+      - log_d_nucleo
+      full_igm_amenity:
+      - slope
+      - log_d_igm_vias
+      - log_d_nucleo
+      - log_d_river
+    final_feature_set: igm_vias
+    thresholds:
+      slope_deg: ~
+      road_distance_m: 250
+      road_distance_sensitivity_m:
+      - 25
+      - 30
+    state_networks:
+      igm_primaria:
+        source: igm
+        layer: via_l
+        field: hct_desc
+        values: RUTA PRIMARIA
+      igm_primaria_secundaria:
+        source: igm
+        layer: via_l
+        field: hct_desc
+        values:
+        - RUTA PRIMARIA
+        - RUTA SECUNDARIA
+      osm_primaria:
+        source: osm
+        field: highway
+        values:
+        - trunk
+        - trunk_link
+        - primary
+        - primary_link
+      osm_primaria_secundaria:
+        source: osm
+        field: highway
+        values:
+        - trunk
+        - trunk_link
+        - primary
+        - primary_link
+        - secondary
+        - secondary_link
+  project_crs: EPSG:32717
+  random_seed: 2026

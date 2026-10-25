@@ -1,0 +1,5 @@
+role,first,last,n
+aoi,Inf,-Inf,1
+auxiliary,Inf,-Inf,3
+predictor,Inf,-Inf,3
+reference_training,Inf,-Inf,1

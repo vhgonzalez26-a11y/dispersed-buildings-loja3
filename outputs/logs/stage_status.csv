@@ -1,0 +1,5 @@
+stage,status,updated_at,note
+03_protocolo,PASSED,2026-10-22 01:10:52,
+04_datos,PASSED,2026-10-22 01:27:29,8 active files
+05_preprocesamiento,PASSED,2026-10-22 10:25:36,
+06_metodo,PASSED,2026-10-22 11:52:42,"M03_presencia_fondo, 118 metrics"

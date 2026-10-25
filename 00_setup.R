@@ -60,6 +60,8 @@ if (length(missing_core) > 0L) {
 }
 
 source(file.path(ROOT, "R_helpers.R"), encoding = "UTF-8")
+# Ayudas genéricas para dejar listo un artículo: paleta segura para daltonismo, rastreo de cifras, suplemento en Word (ver LEEME_PLANTILLA.md)
+if (file.exists(file.path(ROOT, "R_helpers_publicacion.R"))) source(file.path(ROOT, "R_helpers_publicacion.R"), encoding = "UTF-8")
 
 # Paquetes por etapa (referencia)
 STAGE_PKGS <- list(

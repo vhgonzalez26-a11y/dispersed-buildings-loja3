@@ -1,0 +1,114 @@
+facts:
+  algorithm: Inhomogeneous Poisson point process (log-linear intensity) fitted by
+    maximising the point-process likelihood with uniform background (quadrature) points;
+    Newton-Raphson, implemented in base R
+  equivalence: Equivalent in the limit to infinitely weighted logistic regression
+    (Fithian & Hastie 2013) and to a weighted Poisson regression (Warton & Shepherd
+    2010; Renner et al. 2015)
+  presences: 17088 census buildings (2021) located outside census blocks and outside
+    Podocarpus National Park, within the domain 'extended'
+  domain_main: extended
+  domain_area_km2: 1639.0
+  background: 341760 points sampled uniformly at random in the domain (20 per presence;
+    seed 2026); area per point = 0.004796 km2
+  background_convergence: 'ladder (points per presence): 1, 3, 10, 20, 40; convergence
+    criterion: relative change in each intensity ratio < 2% and change in log-likelihood
+    within 2 Monte Carlo standard errors of the difference between the two largest
+    sizes (random quadrature points make the log-likelihood fluctuate; Renner et al.
+    2015 use a change < 2 with a regular mesh) ->met'
+  predictors: slope, dist_road_igm_vias, dist_nucleo, dist_road_igm_all, dist_road_osm2019,
+    dist_road_census2020, dist_river
+  predictor_transform: distances as log(1 + d in metres); slope in degrees (SRTM 30
+    m); all predictors standardised with the mean and SD of the background sample,
+    so ratios are per SD
+  effects_interval: block bootstrap, B = 300, blocks of 10000 m, percentile 95% interval
+  residual_autocorrelation: 'Moran''s I of 1-km Pearson residuals (99 permutations):
+    significant positive autocorrelation up to 10000 m'
+  cross_validation: '5-fold spatial block CV, blocks of 10000 m (rule: auto; bounds
+    2000-16000 m), 3 repeats; random k-fold shown for reference'
+  validation_metrics: AUC (Mann-Whitney), AUC after pairwise distance sampling, distance-null
+    AUC, calibrated AUC = AUC + 0.5 - max(0.5, null AUC) (Hijmans 2012), continuous
+    Boyce index on the rank scale of the held-out background (Hirzel et al. 2006)
+  leave_one_centre_out: Catamayo, Loja, Malacatos, San_Pedro, Vilcabamba
+  sensitivity: background size, naive logistic 3:1, background seeds (2026, 7, 11),
+    domain (aoi_amplio, aoi_estricto, aoi_base, core_buffer), block sizes (2000, 4000,
+    8000, 16000 m), natural splines (df = 3)
+  collinearity: max |r| among all predictors = 0.68; max VIF within feature sets =
+    1.81
+  shares: share of buildings within 250 m of each road source versus share of area
+    (descriptive); share within 25 and 30 m only for proxies of the state road network
+    (igm_primaria, igm_primaria_secundaria, osm_primaria, osm_primaria_secundaria),
+    as sensitivity thresholds from the Ley de Caminos regulation Art. 4; slope shares
+    are descriptive (no official threshold)
+  random_seed: 2026
+  metrics_policy: 118 metrics are reported in metrics_long.csv (hypotheses, effects,
+    validation of the main models, centres, rings, shares); the other 189 (sensitivity
+    analyses and supporting metrics) are in tab_M03_metrics_supplementary
+  model_roles: 'Primary model for fit, cross-validation and response curves: natural
+    cubic splines (df = 3 per predictor), subsets ''spl_<feature set>''. Log-linear
+    model: summary of the average effect as intensity ratios per SD, used for the
+    directional hypotheses on slope, roads, core and river (subsets ''<feature set>'')'
+  model_comparison: Linear versus spline model compared by held-out (spatial block)
+    IPP log-likelihood, AUC after pairwise distance sampling and Boyce; in-sample
+    AIC is reported but overstates evidence under clustering
+  co_principal_domain: aoi_amplio is reported as a sensitivity domain (subset sens_domain_aoi_amplio)
+    next to the main domain
+  odmap: 'Structure follows ODMAP (Zurell et al. 2020): see methods/M03_presencia_fondo_README.md'
+  module: M03_presencia_fondo
+  module_description: Presence-background model of dispersed building locations estimated
+    as an inhomogeneous Poisson point process (large uniform background, quadrature
+    likelihood), with standardised intensity ratios and block-bootstrap intervals,
+    spatial block cross-validation with distance-null calibration (cAUC) and continuous
+    Boyce index, leave-one-centre-out validation, sensitivity to background size,
+    study domain, block size and random seed, and descriptive shares of buildings
+    near roads and above slope values.
+  protocol_version: 1
+  protocol_hash: 556d244ac7ef3a30068570d09a9fbca0
+  runtime_minutes: 43.43
+  run_at: 2026-10-22 11:52:41
+  r_version: 4.4.3
+  packages: sf 1.1.0; terra 1.9.1
+limitations:
+- Presences are census buildings, not dwellings or residences; seasonal use cannot
+  be separated at building level.
+- The model describes where dispersed buildings are located relative to the available
+  environment (relative intensity), not the probability of conversion or the processes
+  that created them; effects are associations.
+- The study domain (AOI) was built with slope, road-corridor and map-house rules,
+  so part of the association may be built into the domain; sensitivity to the AOI
+  scenarios and to a wider domain is reported but a domain fully independent of the
+  covariates is not available.
+- Roads from the 1:50,000 base (2009-2013), OSM 2019 and census axes 2020-2021 are
+  not contemporaneous with 2021 buildings; recent roads and tracks are partly endogenous
+  to settlement (Chomitz & Gray 1996; Duranton & Turner 2012), so intensity ratios
+  of road distance are not causal effects.
+- Intensity ratios per SD from the log-linear model summarise an average effect of
+  relationships that are not linear in the log-intensity; response curves and ratios
+  between the 25th and 75th percentile come from the spline model.
+- Buildings are spatially clustered; the Poisson model assumes conditional independence,
+  so model-based standard errors are too small; intervals reported for the main effects
+  use a block bootstrap.
+- Presence-background AUC is inflated by spatial sorting bias and depends on the background
+  extent (Lobo et al. 2008; Hijmans 2012); AUC after pairwise distance sampling, calibrated
+  AUC, the Boyce index and the effects are reported alongside it, and AUC or Boyce
+  values are not compared across domains of different extent.
+- The Boyce index is computed on the rank scale of the held-out background (equal-area
+  windows of width 0.1), a variant of the continuous index of Hirzel et al. (2006)
+  that avoids empty windows when intensities have a long tail; it is rank-based and
+  cannot distinguish the shape of the predicted-to-expected curve.
+- The census cartography may map dispersed buildings less completely away from roads
+  (survey-effort bias, Phillips et al. 2009); in that case the association with road
+  distance is overstated. A census of buildings has no opportunistic sampling, but
+  the completeness of the 2021 update by distance to roads is not documented.
+- The Boyce-based and AUC-based metrics describe discrimination of building locations
+  within the domain and say nothing about the accuracy of predicted densities; the
+  spatial distribution of errors is shown in the residual map (Lobo et al. 2008).
+- No independent validation data (a different building inventory) are available; validation
+  is internal (spatial block and leave-one-centre-out).
+- Official planning thresholds for slope and road distance are not available; reported
+  shares are descriptive.
+- The state road network is proxied by IGM route class (primary; primary plus secondary)
+  and OSM highway class; the official MTOP inventory is not available, the IGM classes
+  date from 2013 and census axes have no hierarchy, so the 25 and 30 m shares are
+  sensitivity values, not compliance.
+products: data/processed/vectors/model_domain.gpkg

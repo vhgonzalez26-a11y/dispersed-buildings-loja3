@@ -1,0 +1,2 @@
+﻿band,layer_file,source_file,resampling,na_pct_in_aoi,min,max,mean,sd,quicklook,auto_flag,qc_decision,qc_note
+slope_srtm30_x2__slope_srtm30_x2,slope_srtm30_x2.tif,data/raw/raster/slope_srtm30_x2.tif,bilinear,72.43,1,129,33.5691012170112,19.6805608294697,slope_srtm30_x2.png,CHECK: high NA share,ACCEPT,"SRTM 30 m slope. 0 is interpreted as slope < 0.25° (about 0.1% of cells). The negative NA percentage in the report comes from an error in the AOI cell count, not from missing data."

@@ -1,7 +1,11 @@
 # R 4.4.3. Packages called with pkg:: in the scripts (see outputs/logs/session_info.txt for versions)
 dplyr
+flextable
 ggplot2
+ggspatial
+grid
 lidR
+officer
 openxlsx
 purrr
 readr

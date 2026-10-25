@@ -1,0 +1,190 @@
+metric,value,ci_low,ci_high,subset,unit,note
+auc_spatial_cv,0.7864723807514165,0.6957746746206932,0.8423586601284557,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.7674389939653309,0.6826498561994361,0.8195348259532975,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7116456985318713,0.6033854360073969,0.8423586601284558,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.7674339900196183,0.6826459995302843,0.8195324197351552,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.9915963287586372,0.9341558968730178,0.9994874751915304,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,6250.535150620503,-476.43002854414317,19717.438934186197,census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_spatial_cv,0.8359356733525692,0.7946139707358134,0.8708722908722103,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.8115155837691491,0.7488859837030132,0.846354921579232,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7611089911330241,0.6560505479737341,0.8600905514087778,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.8115105798234364,0.7488691269654824,0.8463540697674418,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.9893150041186299,0.9516347399777552,0.9995573526436058,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,7312.0275963610975,-212.50780384821337,22867.1951812741,full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_spatial_cv,0.8254048538884784,0.7689047561095366,0.8624876942167773,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.8028801711913386,0.7395502146021716,0.8446232422931315,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7505781716689331,0.6505541904972284,0.8580659532194828,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.8028751672456259,0.7395473321015446,0.8446223904813414,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.9900175991023141,0.9433904186144225,0.9999068119211201,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,6943.483226264921,-552.0765666635898,22170.269611025466,igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_spatial_cv,0.7968375692656747,0.7014146251390388,0.8718350134356156,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.7753041819462132,0.684347588557768,0.8543297291481751,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7220108870461296,0.6003233372486751,0.8718350134356156,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.7752991780005006,0.6843437318886163,0.8543273229300328,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.990539671596724,0.9203821425560982,0.9998340123339199,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,6823.524631224385,-415.7679900422604,20536.591304928246,spl_census2020,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_spatial_cv,0.8380248285235484,0.7879716589023938,0.8684642127304448,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.8138375006862428,0.7527855089851763,0.8479237966468361,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7631981463040033,0.6678233295649162,0.8675911145486273,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.8138324967405303,0.7527686522476453,0.8479229448350462,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.9870887532149986,0.9566786101616684,0.9998514838892082,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,7686.337095312902,-33.11417191872761,23685.07301476661,spl_full_igm_amenity,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_spatial_cv,0.8368833606570201,0.7709684677535851,0.8802185710949955,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_pds_spatial_cv,0.8138293974923225,0.7677109551480017,0.8635723756136845,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_spatial_cv,0.7620566784374749,0.681730778086692,0.8802185710949955,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cauc_pds_spatial_cv,0.81382439354661,0.7677070984788499,0.8635699693955423,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+boyce_spatial_cv,0.9951896108240293,0.9823003180668509,0.9993971923460986,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+cv_log_likelihood,7498.238500346379,-865.2154647224688,23462.559973719617,spl_igm_all,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,spl_igm_vias,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,spl_igm_vias,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,spl_igm_vias,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_null_distance,0.5636654219558521,0.4110761452472543,0.6658462169191063,spl_osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias,0.8837913624283952,0.7096422509607605,1.1839067355838915,spl_osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+spatial_sorting_bias_after_pds,0.9999994938787262,0.9999915369408626,1.000005494930201,spl_osm2019,,Mean over folds; interval = min-max across 5-fold x 3 spatial block splits (not a confidence interval)
+auc_random_cv,0.8134180819113961,0.8060663540469493,0.8176874432460385,census2020,,Mean over folds of non-spatial random k-fold CV; shown to quantify optimism (Roberts et al. 2017; Pohjankukka et al. 2017)
+auc_random_cv,0.8524936017087158,0.8465361837698833,0.8571064155312411,full_igm_amenity,,Mean over folds of non-spatial random k-fold CV; shown to quantify optimism (Roberts et al. 2017; Pohjankukka et al. 2017)
+auc_random_cv,0.8419162180077343,0.8371154389261035,0.845036537994023,igm_all,,Mean over folds of non-spatial random k-fold CV; shown to quantify optimism (Roberts et al. 2017; Pohjankukka et al. 2017)
+log_likelihood,38471.774701621725,,,igm_vias,,IPP log-likelihood up to a constant; comparable only for the same data
+log_likelihood,36864.362401049846,,,igm_all,,IPP log-likelihood up to a constant; comparable only for the same data
+log_likelihood,39806.622445394634,,,osm2019,,IPP log-likelihood up to a constant; comparable only for the same data
+log_likelihood,33497.19968148445,,,census2020,,IPP log-likelihood up to a constant; comparable only for the same data
+log_likelihood,38547.312756204665,,,full_igm_amenity,,IPP log-likelihood up to a constant; comparable only for the same data
+aic,-76935.54940324345,,,igm_vias,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-73720.72480209969,,,igm_all,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-79605.24489078927,,,osm2019,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-66986.3993629689,,,census2020,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-77084.62551240933,,,full_igm_amenity,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+log_likelihood,40181.504700399586,,,spl_igm_vias,,"Natural cubic splines, df = 3 per predictor"
+log_likelihood,39753.92424561234,,,spl_igm_all,,"Natural cubic splines, df = 3 per predictor"
+log_likelihood,43027.42280317327,,,spl_osm2019,,"Natural cubic splines, df = 3 per predictor"
+log_likelihood,36406.73733879,,,spl_census2020,,"Natural cubic splines, df = 3 per predictor"
+log_likelihood,40500.61786308058,,,spl_full_igm_amenity,,"Natural cubic splines, df = 3 per predictor"
+aic,-80343.00940079917,,,spl_igm_vias,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-79487.84849122468,,,spl_igm_all,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-86034.84560634654,,,spl_osm2019,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-72793.47467758,,,spl_census2020,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+aic,-80975.23572616116,,,spl_full_igm_amenity,,"AIC of the IPP likelihood; spatial clustering makes likelihood differences overstate evidence, so rely on cv_log_likelihood"
+n_presences,17088,,,igm_vias,count,
+n_presences,17088,,,igm_all,count,
+n_presences,17088,,,osm2019,count,
+n_presences,17088,,,census2020,count,
+n_presences,17088,,,full_igm_amenity,count,
+n_background,341760,,,igm_vias,count,
+n_background,341760,,,igm_all,count,
+n_background,341760,,,osm2019,count,
+n_background,341760,,,census2020,count,
+n_background,341760,,,full_igm_amenity,count,
+cauc_spatial_cv,0.781980644033204,,,center_Catamayo,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9840090226439515,,,center_Catamayo,,
+cauc_spatial_cv,0.8190851985389069,,,center_Loja,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9986429662059695,,,center_Loja,,
+cauc_spatial_cv,0.6689815792785948,,,center_Malacatos,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9995486055986468,,,center_Malacatos,,
+cauc_spatial_cv,0.7524243003846144,,,center_San_Pedro,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.958966779698172,,,center_San_Pedro,,
+cauc_spatial_cv,0.8752720028597194,,,center_Vilcabamba,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9841566686745261,,,center_Vilcabamba,,
+cauc_spatial_cv,0.6689815792785948,,,center_min,,Minimum calibrated AUC across held-out centres
+boyce_spatial_cv,0.9593040074167994,,,spl_center_Catamayo,,
+boyce_spatial_cv,0.9995427981097874,,,spl_center_Loja,,
+boyce_spatial_cv,0.9985410054711418,,,spl_center_Malacatos,,
+boyce_spatial_cv,0.966324250449063,,,spl_center_San_Pedro,,
+boyce_spatial_cv,0.9920698970596771,,,spl_center_Vilcabamba,,
+intensity_ratio_slope,0.45064562112722883,0.44265590612425415,0.4587795464410693,sens_bgratio_1,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5036680841054337,0.4979248960653295,0.5094775154869026,sens_bgratio_1,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0713176171008518,1.0618317580745005,1.080888217914952,sens_bgratio_1,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+log_likelihood,38473.779854304055,,,sens_bgratio_1,,IPP log-likelihood with this background size
+intensity_ratio_slope,0.4494278912552543,0.4414962407312881,0.45750203694504593,sens_bgratio_3,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5073890387276333,0.5017355120302713,0.5131062690364627,sens_bgratio_3,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0740577619246965,1.0648930321947996,1.08330136555881,sens_bgratio_3,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+log_likelihood,38434.12515599662,,,sens_bgratio_3,,IPP log-likelihood with this background size
+intensity_ratio_slope,0.4392593756413066,0.43147546862978925,0.4471837059509466,sens_bgratio_10,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.51380985666488,0.5082309059411134,0.5194500486292212,sens_bgratio_10,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.072059085133569,1.0627892202647409,1.0814098036590278,sens_bgratio_10,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+log_likelihood,38502.716070878945,,,sens_bgratio_10,,IPP log-likelihood with this background size
+intensity_ratio_slope,0.43860295038747443,0.4308334092193053,0.446512605503801,sens_bgratio_20,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5153987248331986,0.5097884858198375,0.521070704710982,sens_bgratio_20,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0709099739172994,1.0618009433787594,1.0800971494583178,sens_bgratio_20,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+log_likelihood,38471.774701621725,,,sens_bgratio_20,,IPP log-likelihood with this background size
+intensity_ratio_slope,0.43653481562773366,0.4288094418222422,0.44439936873902813,sens_bgratio_40,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5143645600101463,0.5087887785493089,0.5200014460790446,sens_bgratio_40,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0729084708858647,1.0637713705254288,1.0821240529626825,sens_bgratio_40,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+log_likelihood,38550.24735805701,,,sens_bgratio_40,,IPP log-likelihood with this background size
+odds_ratio_slope,0.40817672732638505,0.3981264384442228,0.41848072532419817,sens_logit_3to1,odds ratio per SD,"Unweighted logistic regression, background:presence = 3:1; biased relative to the IPP when the model is misspecified (Fithian & Hastie 2013)"
+odds_ratio_dist_road_igm_vias,0.46711789885779487,0.45824925109452586,0.4761581844643578,sens_logit_3to1,odds ratio per SD,"Unweighted logistic regression, background:presence = 3:1; biased relative to the IPP when the model is misspecified (Fithian & Hastie 2013)"
+odds_ratio_dist_nucleo,1.0444860967010696,1.0248505929490819,1.0644978045653906,sens_logit_3to1,odds ratio per SD,"Unweighted logistic regression, background:presence = 3:1; biased relative to the IPP when the model is misspecified (Fithian & Hastie 2013)"
+intensity_ratio_slope,0.436800233601728,0.4290752893009311,0.4446642555095053,sens_seed_7,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5117379294860543,0.5061558935161773,0.5173815257893546,sens_seed_7,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0707991459769308,1.061721877020624,1.079954021709069,sens_seed_7,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_slope,0.43336513695188783,0.4256921942188625,0.4411763816105388,sens_seed_11,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.509285856937228,0.5037241409077863,0.5149089809530657,sens_seed_11,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.076575492611367,1.0674296487715957,1.0857996989545953,sens_seed_11,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_slope,0.4262127427813185,0.4166330378141505,0.43601271531953517,sens_domain_aoi_amplio,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5028472915140627,0.495770195885095,0.5100254123417156,sens_domain_aoi_amplio,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0991858543645483,1.087090201805396,1.1114160907977788,sens_domain_aoi_amplio,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+auc_spatial_cv,0.8317796355003887,0.8121340441333295,0.8629298574945311,sens_domain_aoi_amplio,,Mean over spatial block folds (1 repeat). AUC and Boyce depend on the extent of the domain and are NOT comparable across domains (Lobo et al. 2008; Hirzel et al. 2006)
+cauc_spatial_cv,0.7679263120777292,0.6943088055259725,0.8370655541933818,sens_domain_aoi_amplio,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9550209329351316,,,sens_domain_aoi_amplio,,
+n_presences,11317,,,sens_domain_aoi_amplio,count,
+n_background,324917,,,sens_domain_aoi_amplio,count,
+intensity_ratio_slope,0.5629749814493054,0.5481039990512695,0.5782494385854665,sens_domain_aoi_estricto,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.5703547846872967,0.5589900506323179,0.5819505732664023,sens_domain_aoi_estricto,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.4274881892142097,1.387727186247393,1.4683884199576347,sens_domain_aoi_estricto,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+auc_spatial_cv,0.7236744777861984,0.6431437231546533,0.80207138478149,sens_domain_aoi_estricto,,Mean over spatial block folds (1 repeat). AUC and Boyce depend on the extent of the domain and are NOT comparable across domains (Lobo et al. 2008; Hirzel et al. 2006)
+cauc_spatial_cv,0.6293676691059716,0.45827544505387174,0.7076307630547012,sens_domain_aoi_estricto,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9172134470979144,,,sens_domain_aoi_estricto,,
+n_presences,7207,,,sens_domain_aoi_estricto,count,
+n_background,72548,,,sens_domain_aoi_estricto,count,
+intensity_ratio_slope,0.48061657860284235,0.4689534455602979,0.49256978025167586,sens_domain_aoi_base,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.521494712342969,0.5130682175258146,0.5300596016513003,sens_domain_aoi_base,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.1427903078992483,1.126250645485389,1.1595728651197486,sens_domain_aoi_base,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+auc_spatial_cv,0.8062803889535277,0.7146054189050326,0.8664665168788515,sens_domain_aoi_base,,Mean over spatial block folds (1 repeat). AUC and Boyce depend on the extent of the domain and are NOT comparable across domains (Lobo et al. 2008; Hirzel et al. 2006)
+cauc_spatial_cv,0.692284228008742,0.4827101679262218,0.8133551556322021,sens_domain_aoi_base,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.961086042603014,,,sens_domain_aoi_base,,
+n_presences,9132,,,sens_domain_aoi_base,count,
+n_background,185398,,,sens_domain_aoi_base,count,
+intensity_ratio_slope,0.4273184451542999,0.41911144781925785,0.4356861510684272,sens_domain_core_buffer,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_road_igm_vias,0.509194558734275,0.5032055780454341,0.5152548182229866,sens_domain_core_buffer,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+intensity_ratio_dist_nucleo,1.0861378063810225,1.0760558091116226,1.0963142659153713,sens_domain_core_buffer,ratio per SD,95% interval from model-based (Poisson) standard errors; underestimates uncertainty under spatial clustering
+auc_spatial_cv,0.8422734930897203,0.7931477113183887,0.8765443309336941,sens_domain_core_buffer,,Mean over spatial block folds (1 repeat). AUC and Boyce depend on the extent of the domain and are NOT comparable across domains (Lobo et al. 2008; Hirzel et al. 2006)
+cauc_spatial_cv,0.767277468844877,0.6293844592961566,0.8461637627988621,sens_domain_core_buffer,,Hijmans (2012) calibrated AUC
+boyce_spatial_cv,0.9926989118346632,,,sens_domain_core_buffer,,
+n_presences,14989,,,sens_domain_core_buffer,count,
+n_background,562606,,,sens_domain_core_buffer,count,
+auc_spatial_cv,0.8498586983497606,0.8282530457471925,0.8648319728177614,sens_blocksize_2000,,Mean over folds (1 repeat)
+cauc_spatial_cv,0.5831548021208663,,,sens_blocksize_2000,,
+boyce_spatial_cv,0.9956659144223167,,,sens_blocksize_2000,,
+auc_spatial_cv,0.8455086099161576,0.8151003769942823,0.8672549773578162,sens_blocksize_4000,,Mean over folds (1 repeat)
+cauc_spatial_cv,0.6683356708175369,,,sens_blocksize_4000,,
+boyce_spatial_cv,0.9935996464778543,,,sens_blocksize_4000,,
+auc_spatial_cv,0.8484566801493771,0.8173861085003277,0.8881152022570988,sens_blocksize_8000,,Mean over folds (1 repeat)
+cauc_spatial_cv,0.704431948909594,,,sens_blocksize_8000,,
+boyce_spatial_cv,0.9957859490880776,,,sens_blocksize_8000,,
+auc_spatial_cv,0.8234940904226188,0.7481836714434902,0.8887680454845623,sens_blocksize_16000,,Mean over folds (1 repeat)
+cauc_spatial_cv,0.72208720915851,,,sens_blocksize_16000,,
+boyce_spatial_cv,0.9884215587121858,,,sens_blocksize_16000,,
+cauc_pds_spatial_cv,0.800420287702681,0.7381006149230824,0.848365603028664,sens_spline_df_2,,Mean over folds (1 repeat)
+cv_log_likelihood,7332.1178059313825,,,sens_spline_df_2,,Mean held-out IPP log-likelihood per fold
+cauc_pds_spatial_cv,0.8108900648496137,0.7542408073253495,0.8562607896160087,sens_spline_df_5,,Mean over folds (1 repeat)
+cv_log_likelihood,7612.020000789007,,,sens_spline_df_5,,Mean held-out IPP log-likelihood per fold
