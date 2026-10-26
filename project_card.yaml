@@ -6,7 +6,8 @@ project:
   random_seed: 2026
 
 figures:
-  font_family: "Palatino Linotype"
+  font_family: "Arial"                # tipo sin serifas: más legible para personas con dislexia (antes Palatino Linotype)
+  base_size: 10                     # tamaño base del texto de las figuras en puntos (ejes 8 pt, títulos 10 pt; antes 9 y 7,2 pt)
   context_vector: ""                # optional: provincial/country boundaries for the location map
   min_dpi: 600                      # resolución mínima de los PNG (Land: 600 dpi o más); la etapa 12 la comprueba
   place_labels:                     # centros que se rotulan en el mapa de la Figura 1 (nombre en la capa de zonas urbanas del IGM, rótulo y desplazamiento de la etiqueta en m)
@@ -197,6 +198,20 @@ supplementary:
   table_notes:
     Table_S2: "Metrics are for the held-out centre; the feature set is igm_vias (Table 2 of the main text). AUC_pds: AUC after pairwise distance sampling; cAUC: calibrated AUC."
     Table_S3: "Metrics are for the held-out centre; the model is the spline model of the igm_vias feature set. AUC_pds: AUC after pairwise distance sampling; cAUC: calibrated AUC."
-    Table_S5: "Intervals for H1-H3 and H7 are 95% block-bootstrap intervals; for H4 and H5 they are the range across the 15 spatial cross-validation folds, which is not a confidence interval; H6 has no interval. The hypotheses and their criteria were formulated after an exploratory analysis, so the results are exploratory."
+    Table_S5: "Intervals for H1-H3 and H7 are 95% block-bootstrap intervals; for H4 and H5 they are the range across the 15 spatial cross-validation folds, which is not a confidence interval; H6 has no interval. The hypotheses and their criteria were formulated after an exploratory analysis, so the results are exploratory. The threshold first set for H3 (≥ 0.85) would also be met by a large positive association and was not used, so H3 is assessed descriptively. For H5, the paired difference between folds (OSM 2019 minus IGM 2013, spline models) had a mean of 0.014 (range −0.006 to 0.041) and was positive in 13 of 15 folds; the folds are not independent."
+    Table_S15: "Mean over folds with the minimum–maximum across folds in parentheses (not confidence intervals). Spatial block: five folds repeated three times (15 folds); random: 5 folds. AUC_pds: AUC after pairwise distance sampling; AUC_null: AUC of the distance-null model; cAUC: calibrated AUC; cAUC_pds: calibrated AUC after pairwise distance sampling; SSB: spatial sorting bias; SSB_pds: SSB after pairwise distance sampling; CV log-lik.: spatially cross-validated log-likelihood. Models with the prefix spl_ are the spline versions."
+    Table_S16: "The main domain contained 17,088 buildings and 341,760 background points; 11,317 buildings were assigned to the five centres and 5,771 were not assigned to any centre. In each iteration, the training set contained all the remaining observations of the main domain, including those not assigned to a centre, except those in the 10 km blocks intersecting the test set. Standardisation and spline bases used the background sample of the whole main domain."
     Table_S13: "Intervals are either the range across folds or model-based intervals, as stated in the note column; model-based intervals underestimate uncertainty under spatial clustering. AUC and the Boyce index depend on the extent of the domain and are not comparable across domains."
     Table_S14: "Third-party data are not redistributed. The 2021 urban-limit layer is restricted and requires permission from the GAD Municipal de Loja."
+
+# ENTREGA FINAL (etapa 12): documento en la plantilla de la revista, carta en Word y paquete de repositorio. Las rutas son relativas a la raíz del proyecto.
+submission:
+  final_dir: "01_articulo"                       # carpeta del documento final; allí se guardan el manuscrito en plantilla y la carta. Si el autor edita el DOCX final, la etapa 12 no lo pisa
+  journal_template: "land-template.dot"          # plantilla oficial de la revista
+  template_script: "07_infraestructura_y_registro/a1_docx_plantilla_land.py"     # conversor del borrador (export de la etapa 11) a esa plantilla
+  final_manuscript_name: "Manuscript_A1_Land_template.docx"
+  cover_letter_script: "07_infraestructura_y_registro/a1_carta_word.py"          # carta de presentación (borrador 08) a Word para revisar y firmar
+  cover_letter_name: "Cover_letter_Land_A1.docx"
+  verify_script: "07_infraestructura_y_registro/a1_verificar_docx_land.py"       # comprobaciones automáticas del DOCX final
+  repository_script: "07_infraestructura_y_registro/a1_exportar_repositorio.py"  # arma la carpeta GitHub/Zenodo; solo se ejecuta si el ítem C19 del checklist es YES
+  regenerate_if_revised: false                 # false = si en final_dir hay una versión revisada por los autores (manuscrito o carta), se verifica y no se genera otra encima

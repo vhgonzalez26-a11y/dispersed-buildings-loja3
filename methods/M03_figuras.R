@@ -31,7 +31,8 @@ m03_fig_response <- function(resp_tab) {
     ggplot2::geom_ribbon(ggplot2::aes(ymin = ci_low, ymax = ci_high), alpha = 0.2) + ggplot2::geom_line() +
     ggplot2::geom_hline(yintercept = 1, linetype = 2, colour = "grey50") + ggplot2::scale_y_log10() +
     ggplot2::facet_wrap(~var_f, scales = "free_x") +
-    ggplot2::labs(x = "Predictor value (slope in degrees; distances in metres, 1st-99th percentile of the domain)", y = "Relative intensity (log scale; reference = median)") + theme_paper()
+    ggplot2::labs(x = "Predictor value (slope in degrees; distances in metres, 1st-99th percentile of the domain)", y = "Relative intensity
+(log scale; reference = median)") + theme_paper()
 }
 
 m03_fig_validation <- function(cv_fold_tab) {
@@ -99,7 +100,7 @@ m03_fig_domain <- function(DIR, root, card) {
     ggplot2::geom_sf(data = sf::st_sf(geometry = sub), ggplot2::aes(fill = L_D), colour = NA) +
     ggplot2::geom_sf(data = cores, ggplot2::aes(fill = L_C), colour = NA, alpha = 0.7) +
     ggplot2::geom_sf(data = tr, ggplot2::aes(colour = centre), shape = 16, size = 0.35, alpha = 0.75) +
-    ggplot2::scale_fill_manual(name = "Layer", breaks = c(L_D, L_C), values = stats::setNames(c("grey88", "firebrick"), c(L_D, L_C))) +
+    ggplot2::scale_fill_manual(name = "Layer", breaks = c(L_D, L_C), values = stats::setNames(c("grey88", "grey10"), c(L_D, L_C))) +
     ggplot2::scale_colour_manual(name = "Centre", drop = FALSE, values = pal) +
     ggplot2::guides(colour = ggplot2::guide_legend(order = 1, override.aes = list(size = 2.2, alpha = 1)), fill = ggplot2::guide_legend(order = 2)) +
     ggplot2::labs(x = NULL, y = NULL) + theme_paper() +
@@ -112,17 +113,39 @@ m03_fig_domain <- function(DIR, root, card) {
   p
 }
 
+# Correlograma de Moran de los residuos de Pearson: símbolos distintos para «significativo» y «no», línea del tamaño de bloque en vermellón (Okabe-Ito) con rótulo directo
+m03_fig_correlogram <- function(corr, block_km = 10) {
+  corr$sig <- factor(ifelse(corr$p_value < 0.05, "p < 0.05", "Not significant"), levels = c("p < 0.05", "Not significant"))
+  ggplot2::ggplot(corr, ggplot2::aes(dist_km, moran_i)) +
+    ggplot2::geom_hline(yintercept = 0, colour = "grey50") + ggplot2::geom_line() +
+    ggplot2::geom_point(ggplot2::aes(shape = sig), size = 2.4) +
+    ggplot2::geom_vline(xintercept = block_km, linetype = 2, colour = OKABE_ITO[["orange"]]) +
+    ggplot2::annotate("text", x = block_km + 0.4, y = max(corr$moran_i), label = paste0("Block size: ", block_km, " km"), hjust = 0, colour = OKABE_ITO[["orange"]], family = if (exists("FIG_FONT")) FIG_FONT else "sans", size = 3.2) +
+    ggplot2::scale_shape_manual(values = c("p < 0.05" = 17, "Not significant" = 1), name = NULL) +
+    ggplot2::labs(x = "Distance band (km)", y = "Moran's I of Pearson residuals") + theme_paper()
+}
+
+# Mapa de residuos de Pearson por celda: divergente azul-naranja de Okabe-Ito (seguro para daltonismo); los valores se recortan a ±6
+m03_fig_residual_map <- function(cells, cell_m = 1000) {
+  ggplot2::ggplot(cells, ggplot2::aes(cx, cy, fill = pmax(pmin(resid, 6), -6))) + ggplot2::geom_tile(width = cell_m, height = cell_m) +
+    ggplot2::scale_fill_gradient2(low = OKABE_ITO[["blue"]], mid = "white", high = OKABE_ITO[["orange"]], midpoint = 0, limits = c(-6, 6)) +
+    ggplot2::coord_equal() + ggplot2::labs(x = "Easting (m)", y = "Northing (m)", fill = "Pearson
+residual") + theme_paper()
+}
+
 # Dibuja y guarda las figuras del módulo que salen de tablas (las demás, p. ej. correlograma o residuos, las dibuja el módulo)
 m03_render_figures <- function(DIR, card, root, dpi = 600) {
   rdt <- function(n) readr::read_csv(file.path(DIR$tables, n), show_col_types = FALSE, progress = FALSE)
   out <- character()
   guardar <- function(p, id, w, h) { if (!is.null(p)) { save_fig(p, id, w, h, dpi = dpi); out <<- c(out, id) } }
-  guardar(m03_fig_effects(rdt("tab_M03_coefficients.csv")), "fig_M03_effects", 13, 8)
-  guardar(m03_fig_response(rdt("tab_M03_response_curves.csv")), "fig_M03_response_curves", 17, 7)
-  guardar(m03_fig_validation(rdt("tab_M03_cv_folds.csv")), "fig_M03_validation", 17, 7)
+  guardar(m03_fig_effects(rdt("tab_M03_coefficients.csv")), "fig_M03_effects", 15, 9.5)
+  guardar(m03_fig_response(rdt("tab_M03_response_curves.csv")), "fig_M03_response_curves", 17, 7.5)
+  guardar(m03_fig_validation(rdt("tab_M03_cv_folds.csv")), "fig_M03_validation", 17, 11)
   # umbral del criterio de validación por centro (H6), tomado del protocolo congelado
   thr <- tryCatch({ h <- Filter(function(x) identical(as.character(x$subset), "spl_center_min"), read_frozen_protocol()$payload$hypotheses); as.numeric(h[[1]]$threshold) }, error = function(e) NA_real_)
-  guardar(m03_fig_centres(rdt("tab_M03_loco_spline.csv"), threshold = thr), "fig_M03_centres", 13, 8)
+  guardar(m03_fig_correlogram(rdt("tab_M03_residual_correlogram.csv"), block_km = 10), "fig_M03_correlogram", 12, 8)   # 10 km: bloque del protocolo congelado (method_facts.yaml)
+  guardar(m03_fig_residual_map(rdt("tab_M03_residual_cells.csv")), "fig_M03_residual_map", 14, 12)
+  guardar(m03_fig_centres(rdt("tab_M03_loco_spline.csv"), threshold = thr), "fig_M03_centres", 14, 8)
   guardar(m03_fig_convergence(rdt("tab_M03_background_convergence.csv")), "fig_M03_background_convergence", 12, 8)
   guardar(tryCatch(m03_fig_domain(DIR, root, card), error = function(e) { message("Figura del dominio no regenerada: ", conditionMessage(e)); NULL }), "fig_M03_domain", 15, 11)
   out

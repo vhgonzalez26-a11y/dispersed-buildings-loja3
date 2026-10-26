@@ -461,7 +461,7 @@ spatial_block_folds <- function(x, y, block_size, k, seed) {
 # 9. Figuras y registros de productos
 # ------------------------------------------------------------
 
-theme_paper <- function(base_size = 9) {
+theme_paper <- function(base_size = if (exists("CARD", inherits = TRUE)) as.numeric(card_get(get("CARD", inherits = TRUE), "figures.base_size", 9)) else 9) {
   family <- if (exists("FIG_FONT", inherits = TRUE)) FIG_FONT else "serif"
   ggplot2::theme_minimal(base_family = family, base_size = base_size) +
     ggplot2::theme(

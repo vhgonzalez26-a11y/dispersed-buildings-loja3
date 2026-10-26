@@ -839,10 +839,7 @@ run_method <- function(ctx) {
   fig_eff <- figs_env$m03_fig_effects(coef_tab)
   fig_cv <- figs_env$m03_fig_validation(cv_fold_tab)
   fig_conv <- figs_env$m03_fig_convergence(conv_tab)
-  fig_cor <- ggplot2::ggplot(corr, ggplot2::aes(dist_km, moran_i)) +
-    ggplot2::geom_hline(yintercept = 0, colour = "grey50") + ggplot2::geom_line() +
-    ggplot2::geom_point(ggplot2::aes(shape = p_value < 0.05), size = 2) + ggplot2::geom_vline(xintercept = block_m / 1000, linetype = 2, colour = "firebrick") +
-    ggplot2::labs(x = "Distance band (km)", y = "Moran's I of Pearson residuals", shape = "p < 0.05") + theme_paper()
+  fig_cor <- figs_env$m03_fig_correlogram(corr, block_m / 1000)
   pe <- pe_curve |> dplyr::group_by(mid) |> dplyr::summarise(lo = min(pe, na.rm = TRUE), hi = max(pe, na.rm = TRUE), pe = stats::median(pe, na.rm = TRUE), .groups = "drop")
   fig_pe <- ggplot2::ggplot(pe, ggplot2::aes(mid, pe)) + ggplot2::geom_ribbon(ggplot2::aes(ymin = lo, ymax = hi), alpha = 0.2) + ggplot2::geom_line() +
     ggplot2::geom_hline(yintercept = 1, linetype = 2, colour = "grey50") +
@@ -866,11 +863,9 @@ run_method <- function(ctx) {
       caption_draft = "Response curves of the spline model: intensity of dispersed buildings relative to the median value of each predictor, with block-bootstrap 95% bands.")
   }
   # mapa de residuos por celda de 1 km (Lobo et al. 2008: los índices de un solo número no muestran dónde falla el modelo)
-  fig_res <- ggplot2::ggplot(cells, ggplot2::aes(cx, cy, fill = pmax(pmin(resid, 6), -6))) + ggplot2::geom_tile(width = cell_m, height = cell_m) +
-    ggplot2::scale_fill_gradient2(low = "#2166AC", mid = "white", high = "#B2182B", midpoint = 0, limits = c(-6, 6)) +
-    ggplot2::coord_equal() + ggplot2::labs(x = "Easting (m)", y = "Northing (m)", fill = "Pearson\nresidual") + theme_paper()
+  fig_res <- figs_env$m03_fig_residual_map(cells, cell_m)
   figures[[length(figures) + 1L]] <- list(id = "fig_M03_residual_map", plot = fig_res, width_cm = 14, height_cm = 12,
-    caption_draft = "Pearson residuals (observed minus expected dispersed buildings, scaled) of the final model in 1-km cells; red cells have more buildings than the model expects and blue cells fewer.")
+    caption_draft = "Pearson residuals (observed minus expected dispersed buildings, scaled) of the final model in 1-km cells; orange cells have more buildings than the model expects and blue cells fewer.")
   tables$tab_M03_metrics_supplementary <- list(data = metrics_supp,
     description = "Supplementary metrics (sensitivity analyses, per-feature-set duplicates, supporting validation metrics); same columns as metrics_long.csv, nothing omitted")
   # modelling domains for the study-area map (layer "main" = main domain)

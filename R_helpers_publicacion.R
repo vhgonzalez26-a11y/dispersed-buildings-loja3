@@ -6,6 +6,7 @@
 #   3. Lectura de resolución y tamaño de PNG (para comprobar el requisito de la revista).
 #   4. Rastreo de cifras: cada número del texto debe existir en alguna fuente de resultados, ficha o protocolo.
 #   5. Generador del documento de material suplementario en Word (figuras y tablas suplementarias del plan 08).
+#   6. Entrega final de la etapa 12 (entrega_final): manuscrito en la plantilla de la revista, carta en Word y paquete de repositorio, guiada por el bloque submission de la ficha.
 # Se carga desde 00_setup.R. Origen: lecciones de la auditoría editorial de A1 (24-25 oct 2026).
 # ============================================================
 
@@ -31,8 +32,9 @@ cb_scales <- function(levels, name = NULL) {
 # Si las hipótesis o sus umbrales se fijaron después de ver resultados (analysis.hypotheses_post_hoc: true en la ficha), no se habla de hipótesis
 # «apoyadas»: se habla de criterios cumplidos o no cumplidos, y las estimaciones con sus intervalos son la evidencia.
 verdict_labels <- function(card) {
-  if (isTRUE(card_get(card, "analysis.hypotheses_post_hoc", FALSE))) c(SUPPORTED = "Criterion met", NOT_SUPPORTED = "Criterion not met")
-  else c(SUPPORTED = "Supported", NOT_SUPPORTED = "Not supported")
+  # DESCRIPTIVE: hipótesis cuyo criterio no mide lo que se afirma (analysis.descriptive_hypotheses en la ficha); se informa la estimación sin veredicto binario
+  if (isTRUE(card_get(card, "analysis.hypotheses_post_hoc", FALSE))) c(SUPPORTED = "Criterion met", NOT_SUPPORTED = "Criterion not met", DESCRIPTIVE = "Assessed descriptively (no criterion)")
+  else c(SUPPORTED = "Supported", NOT_SUPPORTED = "Not supported", DESCRIPTIVE = "Assessed descriptively (no criterion)")
 }
 
 # ------------------------------------------------------------
@@ -140,11 +142,12 @@ trace_numbers <- function(text, pool, params = character(), external = character
 
 # Tabla de hipótesis en el suplemento: criterio, valor observado e intervalo, sin los textos largos de la etapa 07 (el enunciado está en el texto principal)
 .supp_hypothesis_table <- function(hyp, labels) {
+  desc <- hyp$id %in% as.character(unlist(card_get(CARD, "analysis.descriptive_hypotheses", character())))   # sin criterio: se informa la estimación (ficha)
   tibble::tibble(ID = hyp$id, `Metric (subset)` = paste0(hyp$metric, " (", hyp$subset, ")", ifelse(nzchar(hyp$compare_subset %||% ""), paste0(" vs ", hyp$compare_subset), "")),
-                 Criterion = paste0(ifelse(nzchar(hyp$compare_subset %||% ""), "Difference ", ""), hyp$operator, " ", .supp_fmt(hyp$threshold)),
+                 Criterion = ifelse(desc, "None (descriptive)", paste0(ifelse(nzchar(hyp$compare_subset %||% ""), "Difference ", ""), hyp$operator, " ", .supp_fmt(hyp$threshold))),
                  Observed = .supp_fmt(hyp$observed), `Lower limit` = .supp_fmt(hyp$ci_low), `Upper limit` = .supp_fmt(hyp$ci_high),
                  `Compared value` = .supp_fmt(hyp$compared_value), Difference = .supp_fmt(hyp$difference),
-                 Result = ifelse(hyp$verdict %in% names(labels), labels[hyp$verdict], hyp$verdict))
+                 Result = ifelse(desc, labels[["DESCRIPTIVE"]], ifelse(hyp$verdict %in% names(labels), labels[hyp$verdict], hyp$verdict)))
 }
 
 # Genera Supplementary_Materials.docx con las figuras (PNG) y tablas suplementarias (final_id con «_S») de los manifiestos de la etapa 08
@@ -207,4 +210,127 @@ build_supplementary_docx <- function(path, title, authors, fig_manifest, tab_man
   }
   print(doc, target = path)
   invisible(path)
+}
+
+# ------------------------------------------------------------
+# 6. Entrega final (etapa 12)
+# ------------------------------------------------------------
+# Ejecuta un script de Python con constancia (run_logged.py). `env` = vector "NOMBRE=valor". Devuelve list(ok, salida).
+run_python_step <- function(script, purpose, env = character()) {
+  py <- Sys.which("python"); if (!nzchar(py)) stop("No se encontró python en el PATH.", call. = FALSE)
+  runner <- normalizePath(file.path(ROOT, "..", "codigo_py", "_herramientas", "run_logged.py"), winslash = "/", mustWork = TRUE)
+  script <- normalizePath(file.path(ROOT, "..", "codigo_py", script), winslash = "/", mustWork = TRUE)
+  # system2(env=) no funciona en Windows: las variables se fijan con Sys.setenv y se restauran al terminar
+  vars <- c("PYTHONUTF8=1", paste0("A1_RAIZ=", ROOT), env)
+  nombres <- sub("=.*$", "", vars); previos <- Sys.getenv(nombres, unset = NA)
+  do.call(Sys.setenv, as.list(stats::setNames(sub("^[^=]*=", "", vars), nombres)))
+  on.exit(for (i in seq_along(nombres)) if (is.na(previos[i])) Sys.unsetenv(nombres[i]) else do.call(Sys.setenv, as.list(stats::setNames(previos[i], nombres[i]))), add = TRUE)
+  out <- suppressWarnings(system2(py, c(shQuote(runner), "--no-isolate", shQuote(purpose), shQuote(script)), stdout = TRUE, stderr = TRUE))
+  list(ok = is.null(attr(out, "status")) || attr(out, "status") == 0L, salida = out)
+}
+
+# Un archivo ya existente en la carpeta final se considera editado por el autor (no se pisa) salvo que su hash sea el que dejó esta función en el registro.
+# Devuelve la ruta donde escribir: la misma si es seguro, o una versión «_regenerado_<fecha>» si no.
+.destino_protegido <- function(destino, registro) {
+  if (!file.exists(destino)) return(list(ruta = destino, protegido = FALSE))
+  reg <- if (file.exists(registro)) read_csv_safe(registro) else NULL
+  h <- md5_file(destino)
+  generado_por_cadena <- !is.null(reg) && any(reg$file == basename(destino) & reg$md5 == h)
+  if (generado_por_cadena) return(list(ruta = destino, protegido = FALSE))
+  list(ruta = file.path(dirname(destino), paste0(tools::file_path_sans_ext(basename(destino)), "_regenerado_", format(Sys.time(), "%Y%m%d_%H%M"), ".docx")), protegido = TRUE)
+}
+.registrar_entrega <- function(ruta, registro) {
+  reg <- if (file.exists(registro)) read_csv_safe(registro) else tibble::tibble(file = character(), md5 = character(), generated = character())
+  reg <- reg |> dplyr::filter(file != basename(ruta)) |> dplyr::bind_rows(tibble::tibble(file = basename(ruta), md5 = md5_file(ruta), generated = format(Sys.time(), "%Y-%m-%d %H:%M")))
+  write_csv_safe(reg, registro)
+}
+
+# Versión vigente del manuscrito en la carpeta final: el DOCX más reciente que no es la carta (puede ser la editada por el autor o una regenerada).
+ultima_version_final <- function(final_dir, carta_name) {
+  f <- list.files(final_dir, pattern = "[.]docx$", full.names = TRUE)
+  f <- f[!grepl("^~[$]", basename(f)) & !grepl("^(Cover_letter|Supplementary|Revisi)", basename(f)) & basename(f) != carta_name]
+  if (length(f) == 0L) NULL else f[which.max(file.mtime(f))]
+}
+
+# Documentos que los autores ya revisaron en la carpeta final (p. ej. «…revisadoV4.docx», «Cover_letter_…_revisada.docx»): el más reciente es el vigente y la cadena no genera otro encima.
+# Devuelve NULL si no hay ninguno. `carta` = TRUE busca cartas; FALSE, manuscritos (sin cartas, suplementos ni copias regeneradas).
+documento_revisado <- function(final_dir, carta = FALSE, generado = NULL) {
+  f <- list.files(final_dir, pattern = "[.]docx$", full.names = TRUE)
+  f <- f[!grepl("^~[$]", basename(f)) & !grepl("^Supplementary", basename(f)) & !grepl("_regenerado_", basename(f)) & !(basename(f) %in% generado)]
+  f <- f[if (carta) grepl("^Cover_letter", basename(f)) else !grepl("^Cover_letter", basename(f))]
+  if (!carta) f <- f[!grepl("^Revisi", basename(f))]   # los informes de revisión externa no son el manuscrito
+  if (length(f) == 0L) NULL else f[which.max(file.mtime(f))]
+}
+
+# Entrega final: 1) manuscrito en la plantilla de la revista (ítem C03 del checklist), 2) carta de presentación en Word, 3) paquete de repositorio (ítem C19).
+# C03 o C19 en NA omiten el paso con la nota del checklist. Escribe outputs/decisions/12_entrega_final.csv. Devuelve esa tabla.
+entrega_final <- function(checklist, card = CARD) {
+  g <- function(k) { v <- card_get(card, paste0("submission.", k)); if (is.null(v) || !nzchar(clean_chr(v))) NULL else clean_chr(v) }
+  final_dir <- file.path(ROOT, g("final_dir") %||% "01_articulo"); dir.create(final_dir, showWarnings = FALSE, recursive = TRUE)
+  registro <- file.path(final_dir, ".registro_entrega.csv")
+  carta_name <- g("cover_letter_name") %||% "Cover_letter.docx"
+  rows <- list()
+  add <- function(paso, estado, detalle) rows[[length(rows) + 1L]] <<- tibble::tibble(step = paso, status = estado, detail = as.character(detalle), when = format(Sys.time(), "%Y-%m-%d %H:%M"))
+  item <- function(id) checklist[checklist$item_id == id, , drop = FALSE]
+  decide <- function(id) { r <- item(id); if (nrow(r) == 0L) "YES" else if (r$status[1] == "NA") "NA" else "YES" }
+  nota <- function(id) { r <- item(id); if (nrow(r) == 0L) "" else r$note[1] }
+
+  # 1. Plantilla de la revista (el borrador sale del export de la etapa 11; el documento final vigente se toma de la carpeta final)
+  if (decide("C03") == "NA" || is.null(g("template_script"))) {
+    add("template", "SKIPPED", paste0("C03 = NA: ", nota("C03")))
+  } else {
+    destino <- file.path(final_dir, g("final_manuscript_name") %||% "Manuscript_final_template.docx")
+    revisado <- if (isTRUE(card_get(card, "submission.regenerate_if_revised", FALSE))) NULL else documento_revisado(final_dir, FALSE, basename(destino))
+    d <- if (!is.null(revisado)) list(ruta = revisado, protegido = FALSE) else .destino_protegido(destino, registro)
+    r <- if (!is.null(revisado)) list(ok = TRUE, salida = character()) else run_python_step(g("template_script"), "Etapa 12: pasar el último borrador a la plantilla de la revista", env = paste0("A1_SALIDA=", d$ruta))
+    if (!is.null(revisado)) {
+      add("template", "OK", paste0("Versión revisada por los autores en la carpeta final: ", basename(revisado), " (no se genera otra; para regenerarla desde los borradores, submission.regenerate_if_revised: true)"))
+      v <- run_python_step(g("verify_script"), "Etapa 12: verificar el manuscrito en plantilla", env = paste0("A1_SALIDA=", d$ruta))
+      ver <- file.path(DIR$evidence, "verificacion_docx_land.txt")
+      fallos <- if (file.exists(ver)) grep("^FAIL", readLines(ver, warn = FALSE, encoding = "UTF-8"), value = TRUE) else "sin informe"
+      add("template_verification", if (v$ok && length(fallos) == 0L) "OK" else "FAIL", if (length(fallos)) paste(fallos, collapse = " | ") else paste0(basename(ver), " sobre ", basename(revisado)))
+    } else if (!r$ok || !file.exists(d$ruta)) {
+      add("template", "FAIL", paste(utils::tail(r$salida, 3), collapse = " | "))
+    } else {
+      .registrar_entrega(d$ruta, registro)
+      add("template", if (d$protegido) "WARN" else "OK",
+          if (d$protegido) paste0("El documento final ya tenía cambios del autor y no se pisó. Versión nueva: ", basename(d$ruta), ". Compárela con la anterior y traspase lo que corresponda.") else basename(d$ruta))
+      if (!is.null(g("verify_script"))) {
+        v <- run_python_step(g("verify_script"), "Etapa 12: verificar el manuscrito en plantilla", env = paste0("A1_SALIDA=", d$ruta))
+        ver <- file.path(DIR$evidence, "verificacion_docx_land.txt")
+        fallos <- if (file.exists(ver)) grep("^FAIL", readLines(ver, warn = FALSE, encoding = "UTF-8"), value = TRUE) else "sin informe"
+        add("template_verification", if (v$ok && length(fallos) == 0L) "OK" else "FAIL", if (length(fallos)) paste(fallos, collapse = " | ") else basename(ver))
+      }
+    }
+    vig <- ultima_version_final(final_dir, carta_name)
+    add("final_document_current", "INFO", if (is.null(vig)) "sin documento" else paste0(basename(vig), " (", format(file.mtime(vig), "%Y-%m-%d %H:%M"), ")"))
+  }
+
+  # 2. Carta de presentación en Word (para revisar y firmar); el borrador 08 ya se comprobó sin marcadores en el bloque 6.5
+  if (is.null(g("cover_letter_script"))) {
+    add("cover_letter", "SKIPPED", "sin cover_letter_script en la ficha")
+  } else {
+    carta_rev <- if (isTRUE(card_get(card, "submission.regenerate_if_revised", FALSE))) NULL else documento_revisado(final_dir, TRUE, carta_name)
+    d <- .destino_protegido(file.path(final_dir, carta_name), registro)
+    r <- if (!is.null(carta_rev)) list(ok = TRUE, salida = character()) else run_python_step(g("cover_letter_script"), "Etapa 12: carta de presentación en Word", env = paste0("A1_CARTA=", d$ruta))
+    if (!is.null(carta_rev)) {
+      add("cover_letter", "OK", paste0("Carta revisada por los autores en la carpeta final: ", basename(carta_rev), " (no se genera otra)"))
+    } else if (!r$ok || !file.exists(d$ruta)) {
+      add("cover_letter", "FAIL", paste(utils::tail(r$salida, 3), collapse = " | "))
+    } else {
+      .registrar_entrega(d$ruta, registro)
+      add("cover_letter", if (d$protegido) "WARN" else "OK", if (d$protegido) paste0("La carta ya tenía cambios del autor y no se pisó: ", basename(d$ruta)) else basename(d$ruta))
+    }
+  }
+
+  # 3. Paquete de repositorio (GitHub y Zenodo): solo si el checklist (C19) dice que hace falta
+  if (decide("C19") == "NA" || is.null(g("repository_script"))) {
+    add("repository_package", "SKIPPED", paste0("C19 = NA: ", nota("C19")))
+  } else {
+    r <- run_python_step(g("repository_script"), "Etapa 12: paquete del repositorio (GitHub y Zenodo)")
+    add("repository_package", if (r$ok) "OK" else "FAIL", paste(utils::tail(r$salida[nzchar(r$salida)], if (r$ok) 2L else 3L), collapse = " | "))
+  }
+  res <- dplyr::bind_rows(rows)
+  write_csv_safe(res, file.path(DIR$decisions, "12_entrega_final.csv"))
+  res
 }
