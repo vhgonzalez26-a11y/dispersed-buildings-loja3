@@ -1,0 +1,3 @@
+V0 spl_igm_vias cAUC_pds media = 0.811 (manuscrito: 0.811)
+V0 spl_igm_vias AUC media = 0.835
+V0 LOCO cAUC_pds: Catamayo 0.709; Loja 0.811; Malacatos 0.795; San_Pedro 0.811; Vilcabamba 0.882 (manuscrito: Catamayo 0.709, Loja 0.811, Malacatos 0.795, San Pedro 0.811, Vilcabamba 0.882)

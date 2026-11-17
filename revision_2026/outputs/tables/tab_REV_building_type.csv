@@ -1,0 +1,6 @@
+Subset,Buildings (n),Background points (n),Slope (per 10°),Distance to IGM roads (per doubling),Distance to urban core (per doubling),"AUC_pds, spatial CV: mean (range)"
+All dispersed buildings (reference),"17,088","341,760",0.450 (0.367–0.543),0.706 (0.685–0.729),1.064 (0.924–1.202),0.810 (0.746–0.849)
+Without buildings with a non-residential label,"16,436","341,760",0.453 (0.370–0.545),0.705 (0.684–0.730),1.063 (0.923–1.200),0.810 (0.744–0.850)
+Without buildings and background inside urban cores or the official urban limit,"15,890","338,472",0.460 (0.380–0.549),0.708 (0.687–0.735),0.894 (0.772–1.220),0.803 (0.731–0.842)
+Only beyond 1 km from the urban cores,"15,742","335,186",0.465 (0.379–0.548),0.708 (0.685–0.735),0.836 (0.688–1.248),0.810 (0.722–0.853)
+Only beyond 2 km from the urban cores,"12,673","321,026",0.469 (0.382–0.540),0.701 (0.680–0.728),1.036 (0.764–1.743),0.796 (0.727–0.832)

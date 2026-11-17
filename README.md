@@ -2,6 +2,8 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23643029.svg)](https://doi.org/10.5281/zenodo.23643029)
 
+**Version 2.0.0** (November 2026): adds the analyses requested in peer review (`revision_2026/`). Version 1.0.0 content is unchanged.
+
 This repository contains the **data-processing and modelling code** and the **derived model outputs** of the study "Terrain, Roads and the Location of Dispersed Buildings in the Andean Periphery of Loja Province, Ecuador: A Spatially Cross-Validated Presence-Background Analysis".
 Study design, hypotheses, interpretation and the manuscript are in the article; they are not part of this repository.
 The unit of analysis is the building (census point), not the dwelling, and the model describes associations, not causal effects.
@@ -17,6 +19,7 @@ The unit of analysis is the building (census point), not the dwelling, and the m
 | `tools/probar_M03.R` | Runs the model outside the stage gates (quick or full mode) |
 | `data_preparation/` | Python scripts that built the study inputs from the original sources (see limits below) |
 | `outputs/` | Inventory and quality-control tables (`04_*`, `05_*`), model tables (`tab_M03_*`), metrics, model figures, data provenance and quality-control decisions, run log |
+| `revision_2026/` | Version 2.0.0: scripts, results, tables and figures of the analyses added in response to peer review (see its `README.md`) |
 | `DATA_SOURCES.md`, `data/` | Where to obtain each dataset; size and hash of the files used |
 
 ## Reproducing the processing and the model
@@ -34,7 +37,7 @@ The unit of analysis is the building (census point), not the dwelling, and the m
 
 ## Licence and citation
 Code: MIT licence (`LICENSE`). Derived results (tables, metrics and figures in `outputs/`) and documentation: Creative Commons Attribution 4.0 (`LICENSE_RESULTS.md`). The licences do not cover third-party data, which keep the terms listed in `DATA_SOURCES.md`.
-Citation: see `CITATION.cff`. The archived version (v1.0.0) is on Zenodo: https://doi.org/10.5281/zenodo.23643029.
+Citation: see `CITATION.cff`. This is version 2.0.0, which adds the analyses of `revision_2026/`; the DOI of this version is assigned by Zenodo on publication. The concept DOI and version 1.0.0 are at https://doi.org/10.5281/zenodo.23643029.
 
 ## Authorship
 The software (data-processing workflow, model code and tests) was developed by Víctor González-Jaramillo (Departamento de Ingeniería Civil, Arquitectura y Geociencias, and Especialización en Gestión de Geoinformación con mención en Proyectos de Ingeniería, Universidad Técnica Particular de Loja, Loja 110101, Ecuador; vhgonzalez@utpl.edu.ec; https://orcid.org/0000-0002-2150-7690). The research reported in the article, and the contributions of all its authors, are described in the article.
@@ -46,4 +49,4 @@ The author thanks Jhoana Paladines-Benitez (Departamento de Ciencias Empresarial
 This research was funded by Universidad Técnica Particular de Loja, grant number POA VIN-56.
 
 ## Use of AI
-Claude Code (Anthropic; Claude Sonnet 5.5, accessed October 2026) was used as a programming assistant under the author's supervision; all code, parameters, model specifications and outputs were reviewed and validated by the author.
+Claude Code (Anthropic; Claude Sonnet 5.5 and Claude Opus 5.5, accessed October and November 2026) was used as a programming and writing assistant under the author's supervision: it supported the development and debugging of scripts and the preparation of drafts from verified outputs. All code, parameters, model specifications and outputs were reviewed and validated by the author, who takes full responsibility for the content. The same statement appears in Section 2.8 of the article.

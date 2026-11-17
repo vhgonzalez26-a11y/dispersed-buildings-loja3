@@ -1,0 +1,5 @@
+Preprocessing,Buffer (km),"Training presences, spatial CV (mean)","cAUC_pds, IGM spline model: mean (range)","cAUC_pds, OSM spline model: mean (range)",OSM minus IGM difference: mean (folds higher),"Leave-one-centre-out, IGM spline model: range"
+Original (whole-domain standardisation),None,"13,670",0.811 (0.745–0.851),0.825 (0.751–0.870),0.014 (13 of 15),0.709–0.882 (lowest: Catamayo)
+Training-only standardisation and knots,None,"13,670",0.811 (0.746–0.851),0.825 (0.751–0.870),0.014 (13 of 15),0.710–0.882 (lowest: Catamayo)
+Training-only + buffer,5,"7,137",0.813 (0.763–0.864),0.828 (0.776–0.880),0.015 (14 of 15),0.682–0.872 (lowest: Catamayo)
+Training-only + buffer,10,"1,800",0.771 (0.695–0.843),0.798 (0.727–0.863),0.027 (13 of 15),0.746–0.854 (lowest: Catamayo)

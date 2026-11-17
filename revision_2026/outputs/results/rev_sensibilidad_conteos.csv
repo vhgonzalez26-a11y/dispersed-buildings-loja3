@@ -1,0 +1,6 @@
+"subset","n_presences","n_removed_presences","n_background","area_km2","n_non_residential_label","n_in_core","n_in_urban_limit"
+"S0_todos",17088,0,341760,1639.04703876582,652,4,1196
+"S1_sin_no_residencial",16436,652,341760,1639.04703876582,0,3,1150
+"S2_sin_zonas_urbanas",15890,1198,338472,1623.27811711477,606,0,0
+"S3a_mas_de_1km_del_nucleo",15742,1346,335186,1607.51878726522,598,0,803
+"S3b_mas_de_2km_del_nucleo",12673,4415,321026,1539.60883270961,495,0,515

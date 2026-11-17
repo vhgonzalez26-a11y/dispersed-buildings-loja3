@@ -1,0 +1,7 @@
+Road class group,Model,"AUC_pds, IGM (mean)","AUC_pds, OpenStreetMap (mean)","Difference, OpenStreetMap minus IGM (mean)",Range of paired differences,Folds with OpenStreetMap higher
+Primary and secondary roads,Log-linear,0.789,0.779,-0.010,-0.085 to 0.039,5 of 15
+Primary and secondary roads,Spline,0.787,0.782,-0.005,-0.072 to 0.042,8 of 15
+Vehicular roads,Log-linear,0.810,0.825,0.015,-0.001 to 0.045,13 of 15
+Vehicular roads,Spline,0.811,0.827,0.016,-0.005 to 0.039,13 of 15
+All lines,Log-linear,0.803,0.823,0.021,-0.022 to 0.065,13 of 15
+All lines,Spline,0.814,0.825,0.011,-0.017 to 0.065,11 of 15

@@ -8,7 +8,8 @@ authors:
     orcid: "https://orcid.org/0000-0002-2150-7690"
     email: "vhgonzalez@utpl.edu.ec"
     affiliation: "Departamento de Ingeniería Civil, Arquitectura y Geociencias, Universidad Técnica Particular de Loja; Especialización en Gestión de Geoinformación con mención en Proyectos de Ingeniería, Universidad Técnica Particular de Loja"
+date-released: 2026-11-17
 license: MIT
-version: "1.0.0"
-doi: "10.5281/zenodo.23643029"
+version: "2.0.0"
+# doi: add the DOI of version 2.0.0 assigned by Zenodo (concept DOI: 10.5281/zenodo.23643029)
 repository-code: "https://github.com/vhgonzalez26-a11y/dispersed-buildings-loja3"

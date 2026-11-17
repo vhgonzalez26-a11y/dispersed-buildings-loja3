@@ -1,0 +1,4 @@
+Term,Estimate,"Block bootstrap, B = 300: 95% interval","Block bootstrap, B = 1,000: 95% interval",Leaving out one block at a time: range of estimates (29 blocks),"Leaving out the largest block (4,283 buildings)"
+Slope (per 10°),0.450,0.367–0.543,0.372–0.545,0.419–0.487,0.487
+Distance to IGM roads (per doubling),0.706,0.685–0.729,0.683–0.729,0.696–0.710,0.696
+Distance to urban core (per doubling),1.064,0.924–1.202,0.925–1.217,1.003–1.125,1.125

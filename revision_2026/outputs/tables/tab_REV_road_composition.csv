@@ -1,0 +1,42 @@
+Road layer,Class group,Class or coverage,Length (km),Share of layer length (%),Density (km km⁻²)
+IGM roads without tracks,Local,RUTA LOCAL,337.7,50.3,0.206
+IGM roads without tracks,Primary and secondary,RUTA PRIMARIA,193.0,28.7,0.118
+IGM roads without tracks,Primary and secondary,RUTA SECUNDARIA,141.1,21.0,0.086
+IGM roads without tracks,Total,"542 of 1,841 1 km cells with a road (29.4%)",671.8,100.0,0.410
+IGM roads with tracks and paths,Local,RUTA LOCAL,337.7,16.4,0.206
+IGM roads with tracks and paths,Primary and secondary,RUTA PRIMARIA,193.0,9.3,0.118
+IGM roads with tracks and paths,Primary and secondary,RUTA SECUNDARIA,141.1,6.8,0.086
+IGM roads with tracks and paths,Tracks and paths,RODERA,155.4,7.5,0.095
+IGM roads with tracks and paths,Tracks and paths,SENDERO,"1,236.8",59.9,0.755
+IGM roads with tracks and paths,Total,"1,285 of 1,841 1 km cells with a road (69.9%)","2,063.9",100.0,1.259
+"OpenStreetMap, 1 January 2019",Local,living_street,4.5,0.3,0.003
+"OpenStreetMap, 1 January 2019",Local,residential,536.0,32.7,0.327
+"OpenStreetMap, 1 January 2019",Local,road,18.4,1.1,0.011
+"OpenStreetMap, 1 January 2019",Local,service,29.0,1.8,0.018
+"OpenStreetMap, 1 January 2019",Local,tertiary,135.7,8.3,0.083
+"OpenStreetMap, 1 January 2019",Local,tertiary_link,0.0,0.0,0.000
+"OpenStreetMap, 1 January 2019",Local,unclassified,281.9,17.2,0.172
+"OpenStreetMap, 1 January 2019",Primary and secondary,primary,69.4,4.2,0.042
+"OpenStreetMap, 1 January 2019",Primary and secondary,primary_link,0.2,0.0,0.000
+"OpenStreetMap, 1 January 2019",Primary and secondary,secondary,162.2,9.9,0.099
+"OpenStreetMap, 1 January 2019",Primary and secondary,secondary_link,0.0,0.0,0.000
+"OpenStreetMap, 1 January 2019",Primary and secondary,trunk,186.0,11.3,0.113
+"OpenStreetMap, 1 January 2019",Primary and secondary,trunk_link,0.1,0.0,0.000
+"OpenStreetMap, 1 January 2019",Tracks and paths,bridleway,3.0,0.2,0.002
+"OpenStreetMap, 1 January 2019",Tracks and paths,cycleway,3.8,0.2,0.002
+"OpenStreetMap, 1 January 2019",Tracks and paths,footway,46.4,2.8,0.028
+"OpenStreetMap, 1 January 2019",Tracks and paths,path,41.0,2.5,0.025
+"OpenStreetMap, 1 January 2019",Tracks and paths,pedestrian,0.5,0.0,0.000
+"OpenStreetMap, 1 January 2019",Tracks and paths,steps,1.6,0.1,0.001
+"OpenStreetMap, 1 January 2019",Tracks and paths,track,119.9,7.3,0.073
+"OpenStreetMap, 1 January 2019",Total,"779 of 1,841 1 km cells with a road (42.3%)","1,639.6",100.0,1.000
+"INEC road axes, 2021",No hierarchy,AVENIDA,140.6,11.8,0.086
+"INEC road axes, 2021",No hierarchy,CALLE,914.3,76.6,0.558
+"INEC road axes, 2021",No hierarchy,CALLEJON,3.5,0.3,0.002
+"INEC road axes, 2021",No hierarchy,CARRETERA,24.6,2.1,0.015
+"INEC road axes, 2021",No hierarchy,ESCALINATA,10.6,0.9,0.006
+"INEC road axes, 2021",No hierarchy,PASAJE,2.2,0.2,0.001
+"INEC road axes, 2021",No hierarchy,PEATONAL,2.0,0.2,0.001
+"INEC road axes, 2021",No hierarchy,SENDERO,94.8,8.0,0.058
+"INEC road axes, 2021",No hierarchy,TUNEL,0.2,0.0,0.000
+"INEC road axes, 2021",Total,"169 of 1,841 1 km cells with a road (9.2%)","1,192.9",100.0,0.728
